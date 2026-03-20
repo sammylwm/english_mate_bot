@@ -5,6 +5,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
+from bot.middleware.session import SessionMiddleware
 from config.settings import settings
 
 bot = Bot(
@@ -13,6 +14,7 @@ bot = Bot(
 )
 
 dp = Dispatcher()
+dp.update.middleware(SessionMiddleware())
 
 
 async def main():
