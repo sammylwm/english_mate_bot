@@ -5,6 +5,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
+from bot.handlers import router
 from bot.middleware.session import SessionMiddleware
 from config.settings import settings
 
@@ -14,6 +15,7 @@ bot = Bot(
 )
 
 dp = Dispatcher()
+dp.include_router(router)
 dp.update.middleware(SessionMiddleware())
 
 

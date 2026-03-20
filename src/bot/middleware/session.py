@@ -3,6 +3,7 @@ from typing import Any
 
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
@@ -10,6 +11,7 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from config.settings import settings
+from core.models import User
 
 async_session_maker = async_sessionmaker(
     create_async_engine(url=settings.db.async_url),
@@ -30,8 +32,8 @@ class SessionMiddleware(BaseMiddleware):
         async with async_session_maker() as session:
             try:
                 data["session"] = session
-
-                # res = await session.execute(select(User).where(User.tg_id == uid))
+                print(event)
+                # res = await session.execute(select(User).where(User.tg_id == event.from_user.id))
                 # user: User = res.scalar_one_or_none()
                 #
                 # if user is None:
