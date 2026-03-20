@@ -1,0 +1,68 @@
+[project]
+name = "english-mate-bot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.7",
+]
+
+
+[tool.ruff]
+target-version = "py314"
+line-length = 120
+indent-width = 4
+src = ["src"]
+
+[tool.ruff.lint]
+preview = true
+
+select = [
+    "UP",
+    "I",
+    "E",
+    "W",
+    "F",
+    "B",
+    "C4",
+    "S",
+    "BLE",
+    "T20",
+    "T10",
+    "PT",
+    "RUF",
+    "DTZ",
+    "ERA",
+    "FURB",
+]
+
+ignore = [
+    "C408",
+    "RUF001",
+    "RUF002",
+    "RUF003",
+    "S110",
+    "F403",
+    "F405",
+    "RUF012"
+]
+
+exclude = [
+    "src/tests/**",
+    "**/migrations/**",
+]
+
+fixable = [
+    "ALL",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.flake8-bandit]
+check-typed-exception = true
