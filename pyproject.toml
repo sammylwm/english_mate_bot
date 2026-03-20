@@ -65,6 +65,7 @@ ignore = [
 exclude = [
     "src/tests/**",
     "**/migrations/**",
+    "alembic/versions/*"
 ]
 
 fixable = [

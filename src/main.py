@@ -9,7 +9,7 @@ from bot.middleware.session import SessionMiddleware
 from config.settings import settings
 
 bot = Bot(
-    token=settings.bot.TOKEN.get_secret_value(),
+    token=settings.bot.token.get_secret_value(),
     default=DefaultBotProperties(parse_mode=ParseMode.HTML),
 )
 
