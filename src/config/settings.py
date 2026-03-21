@@ -14,27 +14,25 @@ class ConfigBase(BaseSettings):
 
 
 class AppConfig(BaseModel):
+    root_path: str = "/english_mate"
     title: str = "App"
     host: str = "0.0.0.0"  # noqa: S104
     port: int = 8000
     reload: bool = True
 
 
-class ApiV2Prefix(BaseModel):
+class ApiV1Prefix(BaseModel):
     prefix: str = "/v2"
     auth: str = "/auth"
-    users: str = "/users"
-    messages: str = "/messages"
-    homeworks: str = "/hw"
 
 
 class ApiPrefix(BaseModel):
     prefix: str = "/api"
-    v2: ApiV2Prefix = ApiV2Prefix()
+    v1: ApiV1Prefix = ApiV1Prefix()
 
     @property
     def token_url(self) -> str:
-        parts = (self.prefix, self.v2.prefix, self.v2.auth, "/login")
+        parts = (self.prefix, self.v1.prefix, self.v1.auth, "/login")
         path = "".join(parts)
         return path.removeprefix("/")
 

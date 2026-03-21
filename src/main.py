@@ -19,7 +19,7 @@ async def lifespan(app: FastAPI):
     await db_helper.dispose()
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, root_path=settings.app.root_path)
 
 app.add_middleware(
     CORSMiddleware,
