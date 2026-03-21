@@ -13,11 +13,6 @@ class ConfigBase(BaseSettings):
     model_config = SettingsConfigDict(env_file=str(env_path), env_file_encoding="utf-8", extra="ignore")
 
 
-class BotConfig(ConfigBase):
-    model_config = SettingsConfigDict(env_prefix="BOT_")
-    token: SecretStr = SecretStr("")
-
-
 class DatabaseConfig(ConfigBase):
     model_config = SettingsConfigDict(env_prefix="POSTGRES_")
     host: ClassVar[str] = "db" if os.getenv("APP_ENV", "dev") == "prod" else "localhost"
@@ -37,7 +32,6 @@ class DatabaseConfig(ConfigBase):
 
 
 class Settings(BaseSettings):
-    bot: BotConfig = BotConfig()
     db: DatabaseConfig = DatabaseConfig()
 
 
